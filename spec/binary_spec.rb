@@ -1,6 +1,6 @@
-require_relative '../lib/binary'
+require 'spec_helper'
 
-RSpec.describe '../lib/binary' do
+RSpec.describe 'account.rb' do
   describe '#to_decimal' do
     it "converts binary '0' to decimal 0" do
       expect(Binary.to_decimal('0')).to eq 0
