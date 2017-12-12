@@ -1,6 +1,7 @@
 # Mocking Hell 2017/2018
 
 ## Autorzy
+- [Krzysztof Józefczyk](https://github.com/krzysiekjozefczyk)
 - [Krzysztof Kulewski](https://github.com/kkulewski)
 - [Patryk Miłek](https://github.com/patrykzzz)
 
