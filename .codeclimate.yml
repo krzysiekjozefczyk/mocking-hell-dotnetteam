@@ -1,0 +1,19 @@
+version: "2"
+
+plugins:
+  flog:
+    enabled: true
+  rubocop:
+    enabled: true
+  eslint:
+    enabled: false
+  csslint:
+    enabled: true
+  duplication:
+    enabled: false
+    config:
+      languages:
+      - ruby
+
+exclude_patterns:
+- spec/**/*
