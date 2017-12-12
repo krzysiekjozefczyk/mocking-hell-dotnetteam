@@ -1,6 +1,8 @@
 version: "2"
 
 plugins:
+  flog:
+    enabled: true
   rubocop:
     enabled: true
   eslint:
