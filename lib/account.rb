@@ -1,7 +1,8 @@
 class Account
-  def initialize(id, owner, password)
+  def initialize(id, user, login, password)
     @id = id
-    @owner = owner
+    @user = user
+    @login = login
     @password = password
     @balance = 0.0
   end
