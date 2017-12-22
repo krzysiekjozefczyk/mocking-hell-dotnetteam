@@ -9,5 +9,8 @@ RSpec.describe Transfer do
     it 'initializes new transfer' do
       expect { transfer }.not_to raise_error
     end
+
+    it 'validates legal transfer' do
+      expect transfer.valid?.to eq true
   end
 end
