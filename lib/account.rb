@@ -1,8 +1,10 @@
 class Account
-  def initialize(id, user_name, password)
+  attr_accessor :balance
+
+  def initialize(id, user_name, password, balance)
     @id = id
     @user_name = user_name
     @password = password
-    @balance = 0.0
+    @balance = balance
   end
 end
