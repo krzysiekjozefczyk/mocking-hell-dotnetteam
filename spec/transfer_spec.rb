@@ -11,7 +11,7 @@ RSpec.describe Transfer do
     end
 
     it 'validates legal transfer' do
-      expect transfer.valid?.to eq true
+      expect transfer.valid?.to be_truthy
     end
   end
 end
