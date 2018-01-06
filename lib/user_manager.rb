@@ -12,4 +12,8 @@ class UserManager
   def get_user(id)
     @users.find { |s| s.id == id }
   end
+
+  def add_user(user)
+    @users.push(user)
+  end
 end
