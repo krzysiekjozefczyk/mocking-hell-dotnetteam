@@ -16,4 +16,9 @@ class UserManager
   def add_user(user)
     @users.push(user)
   end
+
+  def remove_user(id)
+    user = get_user(id)
+    @users.delete(user)
+  end
 end
