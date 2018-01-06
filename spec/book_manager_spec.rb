@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe BookManager do
-  describe('.new') do
+  describe '.new' do
     subject(:manager) { BookManager.new }
 
     it 'initializes a new book manager' do
@@ -9,7 +9,7 @@ RSpec.describe BookManager do
     end
   end
 
-  describe('.get_book_count') do
+  describe '.get_book_count' do
     context 'without books' do
       subject(:manager) { BookManager.new }
       let(:expected_number) { 0 }
@@ -33,4 +33,19 @@ RSpec.describe BookManager do
       end
     end
   end
+
+  describe '.add_book' do
+    context 'without books' do
+      subject(:manager) { BookManager.new }
+      let(:book) { Book.new 1, 'John Doe', 'Red Book', 2000, 'science' }
+      let(:expected_number) { 1 }
+
+      it 'adds new book to the storage' do
+        manager.add_book(book)
+        expect(manager.get_books_count).to eq(expected_number)
+        expect(manager.get_book(book.id)).to eq(book)
+      end
+    end
+  end
+
 end
