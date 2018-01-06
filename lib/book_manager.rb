@@ -21,4 +21,17 @@ class BookManager
     book = get_book(id)
     @books.delete(book)
   end
+
+  def update_book(id, modified_book)
+    book = get_book(id)
+    copy_book(book, modified_book)
+  end
+
+  def copy_book(current_book, new_book)
+    current_book.id = new_book.id
+    current_book.author = new_book.author
+    current_book.title = new_book.title
+    current_book.year = new_book.year
+    current_book
+  end
 end
