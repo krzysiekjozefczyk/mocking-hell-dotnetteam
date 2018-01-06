@@ -20,4 +20,17 @@ class UserManager
   def remove_user(id)
     @users.delete_if { |user| user.id == id }
   end
+
+  def update_user(id, modified_user)
+    user = get_user(id)
+    copy_user(user, modified_user)
+  end
+
+  def copy_user(current_user, new_user)
+    current_user.id = new_user.id
+    current_user.first_name = new_user.first_name
+    current_user.last_name = new_user.last_name
+    current_user.pesel = new_user.pesel
+    current_user
+  end
 end
