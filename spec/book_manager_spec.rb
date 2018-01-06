@@ -39,5 +39,16 @@ RSpec.describe BookManager do
         expect(manager.get_book_count).to eq(expected_number)
       end
     end
+
+    describe '.remove_book' do
+      let(:expected_number) { 2 }
+      let(:id) { 1 }
+
+      it 'removes certain book' do
+        expect(manager).to receive(:get_book).and_return(books[0])
+        manager.remove_book(id)
+        expect(manager.get_book_count).to eq(expected_number)
+      end
+    end
   end
 end
