@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe User do
-  context '.new' do
+  describe '.new' do
     subject(:user) { User.new 1, 'John', 'Doe', '90010198765' }
 
     it 'initializes a new user' do
@@ -9,7 +9,7 @@ RSpec.describe User do
     end
   end
 
-  context '.to_s' do
+  describe '.to_s' do
     subject(:user) { User.new 1, 'John', 'Doe', '90010198765' }
 
     it 'returns formatted first name and last name' do
