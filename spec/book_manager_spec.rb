@@ -13,7 +13,7 @@ RSpec.describe BookManager do
     end
 
     describe '.add_book' do
-      let(:book) { Book.new 1, 'John Doe', 'Red Book', 2000, 'science' }
+      let(:book) { Book.new 1, 'John Doe', 'Red Book', 2000 }
       let(:expected_number) { 1 }
 
       it 'adds new book to the storage' do
@@ -26,9 +26,9 @@ RSpec.describe BookManager do
 
   context 'with some books' do
     let(:books) { [
-      (Book.new 1, 'John Doe', 'Red Book', 2000, 'science'),
-      (Book.new 2, 'John Doe', 'Green Book', 2001, 'science'),
-      (Book.new 3, 'John Doe', 'Blue Book', 2002, 'science')
+      (Book.new 1, 'John Doe', 'Red Book', 2000),
+      (Book.new 2, 'John Doe', 'Green Book', 2001),
+      (Book.new 3, 'John Doe', 'Blue Book', 2002)
     ] }
     subject(:manager) { BookManager.new books }
 
