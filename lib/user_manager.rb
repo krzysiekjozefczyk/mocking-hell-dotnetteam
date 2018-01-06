@@ -18,7 +18,6 @@ class UserManager
   end
 
   def remove_user(id)
-    user = get_user(id)
-    @users.delete(user)
+    @users.delete_if { |user| user.id == id }
   end
 end
