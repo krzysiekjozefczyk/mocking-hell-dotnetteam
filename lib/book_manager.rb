@@ -12,4 +12,8 @@ class BookManager
     def get_book(id)
       @books.find { |s| s.id = id}
     end
+
+    def add_book(book)
+        @books.push(book)
+    end
 end

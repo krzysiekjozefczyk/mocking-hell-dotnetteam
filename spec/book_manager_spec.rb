@@ -42,7 +42,7 @@ RSpec.describe BookManager do
 
       it 'adds new book to the storage' do
         manager.add_book(book)
-        expect(manager.get_books_count).to eq(expected_number)
+        expect(manager.get_book_count).to eq(expected_number)
         expect(manager.get_book(book.id)).to eq(book)
       end
     end
