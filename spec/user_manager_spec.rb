@@ -46,5 +46,16 @@ RSpec.describe UserManager do
         expect(manager.get_user(user2.id)).to eq(expected_user)
       end
     end
+
+    describe '.add_user' do
+      let(:user) { User.new 4, 'Jenny', 'Smith', '91050324222' }
+      let!(:expected_number) { manager.user_count + 1 }
+
+      it 'adds new user to the storage' do
+        manager.add_user(user)
+        expect(manager.user_count).to eq(expected_number)
+        expect(manager.get_user(user.id)).to eq(user)
+      end
+    end
   end
 end
