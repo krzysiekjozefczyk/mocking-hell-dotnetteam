@@ -50,5 +50,16 @@ RSpec.describe BookManager do
         expect(manager.get_book_count).to eq(expected_number)
       end
     end
+
+    describe '.update_book' do
+      let(:updated_book) { Book.new 2, 'John Doe', 'Yellow Book', 2001 }
+      let(:id) { 2 }
+
+      it 'updates certain book' do
+        expect(manager).to receive(:get_book).and_return(books[1], books[1])
+        manager.update_book(id, updated_book)
+        expect(manager.get_book(id).title).to eq(updated_book.title)
+      end
+    end
   end
 end
