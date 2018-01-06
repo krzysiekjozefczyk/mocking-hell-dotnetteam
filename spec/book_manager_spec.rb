@@ -30,6 +30,9 @@ RSpec.describe BookManager do
       (Book.new 2, 'John Doe', 'Green Book', 2001),
       (Book.new 3, 'John Doe', 'Blue Book', 2002)
     ] }
+        (Book.new 1, 'Mark Thompson', 'Red Book', 2000),
+        (Book.new 2, 'John Doe', 'Green Book', 2001),
+        (Book.new 3, 'Kate Anne', 'Blue Book', 2002)
     subject(:manager) { BookManager.new books }
 
     describe '.get_book_count' do
