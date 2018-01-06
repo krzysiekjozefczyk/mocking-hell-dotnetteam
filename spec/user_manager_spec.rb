@@ -68,5 +68,15 @@ RSpec.describe UserManager do
         expect(manager.user_count).to eq(expected_number)
       end
     end
+
+    describe '.update_user' do
+      let(:updated_user) { User.new 1, 'Jon', 'Don', '91090877666' }
+
+      it 'updates certain user' do
+        expect(manager).to receive(:get_user).and_return(users[0], users[0])
+        manager.update_user(nil, updated_user)
+        expect(manager.get_user(nil).to_s).to eq(updated_user.to_s)
+      end
+    end
   end
 end
