@@ -1,5 +1,5 @@
 class User
-  attr_accessor :id, :first_name, :last_name, :pesel
+  attr_accessor :id, :first_name, :last_name, :pesel, :overall_rented_books, :currently_rented_books
 
   def initialize(id, first_name, last_name, pesel)
     @id = id
