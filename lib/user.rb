@@ -7,4 +7,8 @@ class User
     @last_name = last_name
     @pesel = pesel
   end
+
+  def to_s
+    "#{first_name} #{last_name}"
+  end
 end
