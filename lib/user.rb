@@ -1,10 +1,10 @@
 class User
-  attr_accessor :id, :name, :surname, :pesel
+  attr_accessor :id, :first_name, :last_name, :pesel
 
-  def initialize(id, name, surname, pesel)
+  def initialize(id, first_name, last_name, pesel)
     @id = id
-    @name = name
-    @surname = surname
+    @first_name = first_name
+    @last_name = last_name
     @pesel = pesel
   end
 end
