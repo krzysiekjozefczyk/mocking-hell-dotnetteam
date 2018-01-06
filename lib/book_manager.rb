@@ -34,4 +34,6 @@ class BookManager
     current_book.year = new_book.year
     current_book
   end
+
+  def rented_by(book) end
 end

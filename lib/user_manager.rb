@@ -33,4 +33,8 @@ class UserManager
     current_user.pesel = new_user.pesel
     current_user
   end
+
+  def add_book(user_id, book) end
+
+  def remove_book(user_id, book) end
 end
