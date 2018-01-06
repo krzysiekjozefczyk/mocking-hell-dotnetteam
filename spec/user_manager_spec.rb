@@ -57,5 +57,16 @@ RSpec.describe UserManager do
         expect(manager.get_user(user.id)).to eq(user)
       end
     end
+
+    describe '.remove_user' do
+      let!(:expected_number) { manager.user_count - 1 }
+      let(:id) { 1 }
+
+      it 'removes certain user' do
+        expect(manager).to receive(:get_user).and_return(users[0])
+        manager.remove_user(id)
+        expect(manager.user_count).to eq(expected_number)
+      end
+    end
   end
 end
