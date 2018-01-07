@@ -10,7 +10,7 @@ class UserManager
   end
 
   def get_user(id)
-    @users.find { |s| s.id == id }
+    @users.find { |user| user.id == id }
   end
 
   def add_user(user)
@@ -32,5 +32,29 @@ class UserManager
     current_user.last_name = new_user.last_name
     current_user.pesel = new_user.pesel
     current_user
+  end
+
+  def add_book(user_id, book)
+    user = get_user(user_id)
+    user.currently_rented_books.push(book)
+    user.overall_rented_books += 1
+  end
+
+  def get_book(user_id, book_id)
+    user = get_user(user_id)
+    user.currently_rented_books.find { |book| book.id == book_id }
+  end
+
+  def remove_book(user_id, book)
+    user = get_user(user_id)
+    book = get_book(user_id, book.id)
+    raise BookNotFoundError unless book
+    user.currently_rented_books.delete(book)
+  end
+end
+
+class BookNotFoundError < StandardError
+  def initialize(msg = 'Book not found in given user')
+    super
   end
 end

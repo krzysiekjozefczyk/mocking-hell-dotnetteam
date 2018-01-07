@@ -63,8 +63,8 @@ RSpec.describe UserManager do
       let(:id) { 1 }
 
       it 'removes certain user' do
-        manager.remove_user(id)
-        expect(manager.get_user(id)).to be nil
+        user = manager.remove_user(id)
+        expect(manager.users).not_to include(user)
         expect(manager.user_count).to eq(expected_number)
       end
     end
@@ -76,6 +76,48 @@ RSpec.describe UserManager do
         expect(manager).to receive(:get_user).and_return(users[0], users[0])
         manager.update_user(nil, updated_user)
         expect(manager.get_user(nil).to_s).to eq(updated_user.to_s)
+      end
+    end
+
+    describe '.add_book' do
+      let(:user) { users[0] }
+      let(:book) { Book.new 1, 'Jake Hyde', 'Some title', '2012' }
+      let!(:expected_user_book_count) { user.overall_rented_books + 1 }
+
+      it 'adds book to user\'s collection' do
+        expect(manager).to receive(:get_user).and_return(user)
+        expect { manager.add_book(user.id, book) }.to change { user.overall_rented_books }
+        expect(user.currently_rented_books).to include(book)
+        expect(user.overall_rented_books).to eq(expected_user_book_count)
+      end
+    end
+
+    describe '.remove_book' do
+      let(:user) { users[1] }
+      let(:book) { Book.new 1, 'Whatever', 'Works', '1996' }
+      let!(:book_count) { user.overall_rented_books }
+
+      it 'doesn\'t remove non-existent book from user' do
+        expect { manager.remove_book(user.id, book) }.to raise_error(BookNotFoundError)
+        expect(user.overall_rented_books).to eq(book_count)
+      end
+    end
+  end
+  context 'one user with some books' do
+    let(:user) { User.new 1, 'Jon', 'Son', '91090877666', [book] }
+    let(:book) { Book.new 1, 'Whatever', 'Works', '1996' }
+    subject(:manager) { UserManager.new [user] }
+
+
+    describe '.remove_book' do
+      it 'removes existing book from user' do
+        expect(manager.remove_book(user.id, book)).to eq(book)
+      end
+    end
+
+    describe '.get_book' do
+      it 'returns correct book for given user' do
+        expect(manager.get_book(user.id, book.id)).to eq(book)
       end
     end
   end

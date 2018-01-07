@@ -10,7 +10,7 @@ class BookManager
   end
 
   def get_book(id)
-    @books.find { |s| s.id = id }
+    @books.find { |s| s.id == id }
   end
 
   def add_book(book)
@@ -18,8 +18,7 @@ class BookManager
   end
 
   def remove_book(id)
-    book = get_book(id)
-    @books.delete(book)
+    @books.delete_if{ |book| book.id == id }
   end
 
   def update_book(id, modified_book)
@@ -34,4 +33,6 @@ class BookManager
     current_book.year = new_book.year
     current_book
   end
+
+  def rented_by(book) end
 end
