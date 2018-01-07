@@ -75,7 +75,7 @@ class HostApp
 
   def create_user
     write 'ID?'
-    id = read
+    id = Integer(read)
     write 'First name?'
     first_name = read
     write 'Last name?'
@@ -88,7 +88,7 @@ class HostApp
   def remove_user
     write '-- REMOVE USER --'
     write 'ID?'
-    user_id = read
+    user_id = Integer(read)
     result = @user_manager.remove_user user_id
     write status(result)
   end
@@ -96,7 +96,7 @@ class HostApp
   def update_user
     write '-- UPDATE USER --'
     write 'ID?'
-    user_id = read
+    user_id = Integer(read)
     updated_user = create_user
     result = @user_manager.update_user(user_id, updated_user)
     write status(result)
