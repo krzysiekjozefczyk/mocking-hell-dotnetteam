@@ -18,8 +18,7 @@ class BookManager
   end
 
   def remove_book(id)
-    book = get_book(id)
-    @books.delete(book)
+    @books.delete_if{ |book| book.id == id }
   end
 
   def update_book(id, modified_book)

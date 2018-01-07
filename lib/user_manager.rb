@@ -10,7 +10,7 @@ class UserManager
   end
 
   def get_user(id)
-    @users.find { |s| s.id == id }
+    @users.find { |user| user.id == id }
   end
 
   def add_user(user)
