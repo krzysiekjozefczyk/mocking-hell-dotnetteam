@@ -78,7 +78,7 @@ RSpec.describe UserManager do
 
     describe '.add_book' do
       let(:user) { users[0] }
-      let(:book) { Book.new 1, 'Jake Hyde', 'Some title', '2012' }
+      let(:book) { BookFactory.create_single_book }
       let!(:expected_user_book_count) { user.overall_rented_books + 1 }
 
       it 'adds book to user\'s collection' do
@@ -91,7 +91,7 @@ RSpec.describe UserManager do
 
     describe '.remove_book' do
       let(:user) { users[1] }
-      let(:book) { Book.new 1, 'Whatever', 'Works', '1996' }
+      let(:book) { BookFactory.create_single_book }
       let!(:book_count) { user.overall_rented_books }
 
       it 'doesn\'t remove non-existent book from user' do
@@ -101,8 +101,8 @@ RSpec.describe UserManager do
     end
   end
   context 'one user with some books' do
-    let(:user) { User.new 1, 'Jon', 'Son', '91090877666', [book] }
-    let(:book) { Book.new 1, 'Whatever', 'Works', '1996' }
+    let(:user) { UserFactory.create_single_user_with_book }
+    let(:book) { user.currently_rented_books[0] }
     subject(:manager) { UserManager.new [user] }
 
     describe '.remove_book' do
