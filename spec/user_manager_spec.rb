@@ -114,5 +114,11 @@ RSpec.describe UserManager do
         expect(manager.remove_book(user.id, book)).to eq(book)
       end
     end
+
+    describe '.get_book' do
+      it 'returns correct book for given user' do
+        expect(manager.get_book(user.id, book.id)).to eq(book)
+      end
+    end
   end
 end
