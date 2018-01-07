@@ -13,7 +13,7 @@ RSpec.describe UserManager do
     end
 
     describe '.add_user' do
-      let(:user) { User.new 1, 'Joe', 'Lopez', '92050411222' }
+      let(:user) { UserFactory.create_single_user_without_books() }
       let!(:expected_number) { manager.user_count + 1 }
 
       it 'adds new user to the storage' do
