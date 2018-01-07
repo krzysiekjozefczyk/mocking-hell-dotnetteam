@@ -110,7 +110,3 @@ class HostApp
     @user_manager.add_user(User.new(5, 'Jen', 'Brown', '95030400111'))
   end
 end
-
-app = HostApp.new(ConsoleIo.new)
-app.populate
-app.run
