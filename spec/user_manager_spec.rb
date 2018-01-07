@@ -29,7 +29,7 @@ RSpec.describe UserManager do
     subject(:manager) { UserManager.new users }
 
     describe '.user_count' do
-      let(:expected_number) { 3 }
+      let(:expected_number) { users.count }
 
       it 'returns correct number of users' do
         expect(manager.user_count).to eq(expected_number)
