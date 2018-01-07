@@ -1,7 +1,10 @@
 require 'rspec'
 require 'simplecov'
 
-SimpleCov.start
+SimpleCov.start do
+  add_filter '../spec/factories/book_factory'
+  add_filter '../spec/factories/user_factory'
+end
 
 require_relative '../lib/user'
 require_relative '../lib/book'

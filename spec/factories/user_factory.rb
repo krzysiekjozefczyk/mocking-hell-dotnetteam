@@ -23,14 +23,4 @@ class UserFactory
     book.rented_by = user_id
     User.new user_id, 'Joe', 'Lopez', '92050411222', [book]
   end
-
-  def self.create_many_users_with_books
-    users = create_array_of_users_without_books
-    user1 = users[0]
-    user1.currently_rented_books = BookFactory.create_many_books
-    user1.currently_rented_books.each { |book| book.rented_by = user1.id }
-    user2 = users[1]
-    user2.currently_rented_books = BookFactory.create_single_book
-    user2.currently_rented_books.each { |book| book.rented_by = user2.id }
-  end
 end

@@ -40,4 +40,29 @@ RSpec.describe Library do
       end
     end
   end
+
+  context 'with pre-baked users with rented books' do
+    let(:users) do
+      users = UserFactory.create_array_of_users_without_books
+      users[0].overall_rented_books = 10
+      users[1].overall_rented_books = 5
+      users[2].overall_rented_books = 15
+      users[3].overall_rented_books = 23
+      users
+    end
+    let(:book_manager) { instance_double('BookManager') }
+    let(:user_manager) { instance_double('UserManager') }
+
+    let!(:sorted_users) { [users[3], users[2], users[0], users[1]] }
+    let!(:unsorted_users) { [users[0], users[1], users[2], users[3]] }
+
+    subject(:library) { Library.new user_manager, book_manager }
+
+    describe '.get_best_readers' do
+      it 'returns readers sorted by books read' do
+        allow(user_manager).to receive(:users).and_return(unsorted_users)
+        expect(library.get_best_readers).to eq(sorted_users)
+      end
+    end
+  end
 end
