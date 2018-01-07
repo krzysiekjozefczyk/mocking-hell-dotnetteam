@@ -20,6 +20,7 @@ class HostApp
   end
 
   def print_users
+    write '-- USERS: --'
     @user_manager.users.each { |x| write x.to_s }
   end
 end
