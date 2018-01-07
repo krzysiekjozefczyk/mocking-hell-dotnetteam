@@ -10,7 +10,7 @@ class BookManager
   end
 
   def get_book(id)
-    @books.find { |s| s.id = id }
+    @books.find { |s| s.id == id }
   end
 
   def add_book(book)

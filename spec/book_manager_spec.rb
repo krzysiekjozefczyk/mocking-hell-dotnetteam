@@ -63,5 +63,14 @@ RSpec.describe BookManager do
         expect(manager.get_book(id).title).to eq(updated_book.title)
       end
     end
+
+    describe '.get_book' do
+      let(:target) { books[1] }
+      let(:id) { target.id }
+
+      it 'returns correct book' do
+        expect(manager.get_book(id)).to eq(target)
+      end
+    end
   end
 end
