@@ -19,4 +19,16 @@ class Library
     book.rented_by = nil
     @user_manager.remove_book(user.id, book)
   end
+
+  def best_readers
+    @user_manager.users.sort_by(&:overall_rented_books).reverse
+  end
+
+  def total_books_rented
+    @user_manager.users.sum(&:overall_rented_books)
+  end
+
+  def average_books_rented
+    total_books_rented / @user_manager.users.count
+  end
 end

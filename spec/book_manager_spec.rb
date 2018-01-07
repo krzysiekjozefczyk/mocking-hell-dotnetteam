@@ -29,7 +29,7 @@ RSpec.describe BookManager do
     subject(:manager) { BookManager.new books }
 
     describe '.book_count' do
-      let(:expected_number) { 3 }
+      let(:expected_number) { books.count }
 
       it 'returns correct number of books' do
         expect(manager.book_count).to eq(expected_number)
