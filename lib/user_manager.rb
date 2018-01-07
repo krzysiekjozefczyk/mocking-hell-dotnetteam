@@ -42,11 +42,14 @@ class UserManager
 
   def get_book(user_id, book_id)
     user = get_user(user_id)
-    user.currently_rented_books.find{ |book| book.id == book_id }
+    user.currently_rented_books.find { |book| book.id == book_id }
   end
 
   def remove_book(user_id, book)
-    raise BookNotFoundError unless get_book(user_id, book.id)
+    user = get_user(user_id)
+    book = get_book(user_id, book.id)
+    raise BookNotFoundError unless book
+    user.currently_rented_books.delete(book)
   end
 end
 
