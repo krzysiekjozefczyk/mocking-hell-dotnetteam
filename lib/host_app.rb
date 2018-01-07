@@ -101,7 +101,16 @@ class HostApp
     result = @user_manager.update_user(user_id, updated_user)
     write status(result)
   end
+
+  def populate
+    @user_manager.add_user(User.new(1, 'John', 'Doe', '91010155666'))
+    @user_manager.add_user(User.new(2, 'Kate', 'Smith', '75101198765'))
+    @user_manager.add_user(User.new(3, 'Tom', 'Parker', '85051045678'))
+    @user_manager.add_user(User.new(4, 'Edgar', 'Williams', '60110122333'))
+    @user_manager.add_user(User.new(5, 'Jen', 'Brown', '95030400111'))
+  end
 end
 
 app = HostApp.new(ConsoleIo.new)
+app.populate
 app.run
