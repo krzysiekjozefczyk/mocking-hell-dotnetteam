@@ -23,4 +23,8 @@ class Library
   def best_readers
     @user_manager.users.sort_by(&:overall_rented_books).reverse
   end
+
+  def total_books_rented
+    @user_manager.users.sum(&:overall_rented_books)
+  end
 end
