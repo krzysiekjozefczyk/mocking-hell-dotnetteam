@@ -31,6 +31,7 @@ class HostApp
     write '-- MENU --'
     write '[1] LIST USERS'
     write '[2] ADD USER'
+    write '[3] REMOVE USER'
   end
 
   def print_gap
@@ -46,6 +47,8 @@ class HostApp
       print_users
     when '2'
       add_user
+    when '3'
+      remove_user
     else
       write 'Wrong option!'
     end
@@ -74,6 +77,15 @@ class HostApp
     write 'PESEL?'
     pesel = read
     User.new id, first_name, last_name, pesel
+  end
+
+  def remove_user
+    write '-- REMOVE USER --'
+    write 'ID?'
+    user_id = read
+    result = @user_manager.remove_user user_id
+    message = result.nil? ? 'ERROR' : 'OK'
+    write message
   end
 end
 
