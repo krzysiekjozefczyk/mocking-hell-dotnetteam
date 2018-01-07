@@ -16,8 +16,31 @@ RSpec.describe Library do
         allow(book_manager).to receive(:get_book).with(book.id).and_return(book)
         allow(user_manager).to receive(:add_book).with(user.id, book)
 
+        expect(book.rented_by).to eq(nil)
         library.rent_book(user.id, book.id)
         expect(book.rented_by).to eq(user.id)
+      end
+    end
+  end
+
+  context 'with pre-baked user with a rented book' do
+    let(:user) { UserFactory.create_single_user_with_book }
+    let(:book) { user.currently_rented_books[0] }
+
+    let(:book_manager) { instance_double('BookManager') }
+    let(:user_manager) { instance_double('UserManager') }
+
+    subject(:library) { Library.new user_manager, book_manager }
+
+    describe '.return_book' do
+      it 'marks book as not rented' do
+        allow(user_manager).to receive(:get_user).with(user.id).and_return(user)
+        allow(book_manager).to receive(:get_book).with(book.id).and_return(book)
+        allow(user_manager).to receive(:remove_book).with(user.id, book)
+
+        expect(book.rented_by).to eq(user.id)
+        library.return_book(user.id, book.id)
+        expect(book.rented_by).to eq(nil)
       end
     end
   end
