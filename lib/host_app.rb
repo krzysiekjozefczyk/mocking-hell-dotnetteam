@@ -18,4 +18,11 @@ class HostApp
   def read
     @io.read
   end
+
+  def print_users
+    @user_manager.users.each { |x| write x.to_s }
+  end
 end
+
+app = HostApp.new(ConsoleIo.new)
+app.print_users
