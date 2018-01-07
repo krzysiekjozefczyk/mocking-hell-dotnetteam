@@ -16,9 +16,7 @@ RSpec.describe Library do
         allow(book_manager).to receive(:get_book).with(book.id).and_return(book)
         allow(user_manager).to receive(:add_book).with(user.id, book)
 
-        expect(book.rented_by).to eq(nil)
-        library.rent_book(user.id, book.id)
-        expect(book.rented_by).to eq(user.id)
+        expect { library.rent_book(user.id, book.id) }.to change { book.rented_by }.from(nil).to(user.id)
       end
     end
   end
@@ -38,9 +36,7 @@ RSpec.describe Library do
         allow(book_manager).to receive(:get_book).with(book.id).and_return(book)
         allow(user_manager).to receive(:remove_book).with(user.id, book)
 
-        expect(book.rented_by).to eq(user.id)
-        library.return_book(user.id, book.id)
-        expect(book.rented_by).to eq(nil)
+        expect { library.return_book(user.id, book.id) }.to change { book.rented_by }.from(user.id).to(nil)
       end
     end
   end
