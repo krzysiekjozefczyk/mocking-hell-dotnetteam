@@ -40,6 +40,10 @@ class HostApp
     @io.write ''
   end
 
+  def status(result)
+    result.nil? ? 'ERROR' : 'OK'
+  end
+
   def choose_option
     option = read
     print_gap
@@ -66,8 +70,7 @@ class HostApp
     write '-- ADD NEW USER --'
     user = create_user
     result = @user_manager.add_user user
-    message = result.nil? ? 'ERROR' : 'OK'
-    write message
+    write status(result)
   end
 
   def create_user
@@ -87,8 +90,7 @@ class HostApp
     write 'ID?'
     user_id = read
     result = @user_manager.remove_user user_id
-    message = result.nil? ? 'ERROR' : 'OK'
-    write message
+    write status(result)
   end
 
   def update_user
@@ -97,8 +99,7 @@ class HostApp
     user_id = read
     updated_user = create_user
     result = @user_manager.update_user(user_id, updated_user)
-    message = result.nil? ? 'ERROR' : 'OK'
-    write message
+    write status(result)
   end
 end
 
