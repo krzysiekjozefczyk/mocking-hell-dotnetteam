@@ -34,7 +34,11 @@ class UserManager
     current_user
   end
 
-  def add_book(user_id, book) end
+  def add_book(user_id, book)
+    user = get_user(user_id)
+    user.currently_rented_books.push(book)
+    user.overall_rented_books += 1    
+  end
 
   def remove_book(user_id, book) end
 end
