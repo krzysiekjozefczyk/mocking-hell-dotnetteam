@@ -78,5 +78,17 @@ RSpec.describe UserManager do
         expect(manager.get_user(nil).to_s).to eq(updated_user.to_s)
       end
     end
+    describe '.add_book' do
+      let(:user) { users[0] }
+      let(:book) { Book.new 1, 'Jake Hyde', 'Some title', '2012' }
+      let!(:expected_user_book_count) { user.overall_rented_books + 1 }
+
+      it 'adds book to user\'s collection' do
+        expect(manager).to receive(:get_user).and_return(user)
+        expect { manager.add_book(user.id, book) }.to change { user.overall_rented_books }
+        expect(user.currently_rented_books).to include(book)
+        expect(user.overall_rented_books).to eq(expected_user_book_count)
+      end
+    end
   end
 end
