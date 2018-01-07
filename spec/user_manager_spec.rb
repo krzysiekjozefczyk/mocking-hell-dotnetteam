@@ -104,12 +104,14 @@ RSpec.describe UserManager do
     end
   end
   context 'one user with some books' do
-    let(:user1) { User.new 1, 'Jon', 'Son', '91090877666', book }
+    let(:user) { User.new 1, 'Jon', 'Son', '91090877666', [book] }
     let(:book) { Book.new 1, 'Whatever', 'Works', '1996' }
+    subject(:manager) { UserManager.new [user] }
+
 
     describe '.remove_book' do
       it 'removes existing book from user' do
-        expect
+        expect(manager.remove_book(user.id, book)).to eq(book)
       end
     end
   end
