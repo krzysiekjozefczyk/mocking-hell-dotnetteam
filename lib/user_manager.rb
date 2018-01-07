@@ -37,8 +37,21 @@ class UserManager
   def add_book(user_id, book)
     user = get_user(user_id)
     user.currently_rented_books.push(book)
-    user.overall_rented_books += 1    
+    user.overall_rented_books += 1
   end
 
-  def remove_book(user_id, book) end
+  def get_book(user_id, book_id)
+    user = get_user(user_id)
+    user.currently_rented_books.find{ |book| book.id == book_id }
+  end
+
+  def remove_book(user_id, book)
+    raise BookNotFoundError unless get_book(user_id, book.id)
+  end
+end
+
+class BookNotFoundError < StandardError
+  def initialize(msg = 'Book not found in given user')
+    super
+  end
 end

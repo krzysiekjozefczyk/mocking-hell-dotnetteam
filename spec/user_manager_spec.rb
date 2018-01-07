@@ -98,8 +98,18 @@ RSpec.describe UserManager do
       let!(:book_count) { user.overall_rented_books }
 
       it 'doesn\'t remove non-existent book from user' do
-        expect { manager.remove_book(user.id, book) }.to raise_error
+        expect { manager.remove_book(user.id, book) }.to raise_error(BookNotFoundError)
         expect(user.overall_rented_books).to eq(book_count)
+      end
+    end
+  end
+  context 'one user with some books' do
+    let(:user1) { User.new 1, 'Jon', 'Son', '91090877666', book }
+    let(:book) { Book.new 1, 'Whatever', 'Works', '1996' }
+
+    describe '.remove_book' do
+      it 'removes existing book from user' do
+        expect
       end
     end
   end
