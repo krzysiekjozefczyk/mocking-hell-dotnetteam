@@ -43,7 +43,7 @@ RSpec.describe BookManager do
     end
 
     describe '.remove_book' do
-      let(:expected_number) { 2 }
+      let!(:expected_number) { manager.book_count - 1 }
       let(:id) { 1 }
 
       it 'removes certain book' do

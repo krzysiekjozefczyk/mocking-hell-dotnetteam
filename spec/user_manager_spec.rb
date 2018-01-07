@@ -63,8 +63,8 @@ RSpec.describe UserManager do
       let(:id) { 1 }
 
       it 'removes certain user' do
-        manager.remove_user(id)
-        expect(manager.get_user(id)).to be nil
+        user = manager.remove_user(id)
+        expect(manager.users).not_to include(user)
         expect(manager.user_count).to eq(expected_number)
       end
     end
