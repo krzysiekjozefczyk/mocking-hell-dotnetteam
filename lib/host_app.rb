@@ -19,6 +19,38 @@ class HostApp
     @io.read
   end
 
+  def run
+    loop do
+      print_gap
+      print_menu
+      choose_option
+    end
+  end
+
+  def print_menu
+    write '-- MENU --'
+    write '[1] LIST USERS'
+    write '[2] ADD USER'
+  end
+
+  def print_gap
+    @io.write ''
+    @io.write ''
+  end
+
+  def choose_option
+    option = read
+    print_gap
+    case option
+    when '1'
+      print_users
+    when '2'
+      add_user
+    else
+      write 'Wrong option!'
+    end
+  end
+
   def print_users
     write '-- USERS --'
     @user_manager.users.each { |x| write x.to_s }
@@ -46,5 +78,4 @@ class HostApp
 end
 
 app = HostApp.new(ConsoleIo.new)
-app.add_user
-app.print_users
+app.run
