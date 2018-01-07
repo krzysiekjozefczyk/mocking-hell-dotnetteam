@@ -64,5 +64,13 @@ RSpec.describe Library do
         expect(library.best_readers).to eq(sorted_users)
       end
     end
+
+    describe 'total_books_rented' do
+      it 'returns correct amount of books' do
+        allow(user_manager).to receive(:users).and_return(unsorted_users)
+        sum = unsorted_users.sum(&:overall_rented_books)
+        expect(library.total_books_rented).to eq(sum)
+      end
+    end
   end
 end
