@@ -19,4 +19,8 @@ class Library
     book.rented_by = nil
     @user_manager.remove_book(user.id, book)
   end
+
+  def best_readers
+    @user_manager.users.sort_by(&:overall_rented_books).reverse
+  end
 end

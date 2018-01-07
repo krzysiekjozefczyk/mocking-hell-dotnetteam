@@ -58,10 +58,10 @@ RSpec.describe Library do
 
     subject(:library) { Library.new user_manager, book_manager }
 
-    describe '.get_best_readers' do
+    describe '.best_readers' do
       it 'returns readers sorted by books read' do
         allow(user_manager).to receive(:users).and_return(unsorted_users)
-        expect(library.get_best_readers).to eq(sorted_users)
+        expect(library.best_readers).to eq(sorted_users)
       end
     end
   end
