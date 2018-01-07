@@ -27,4 +27,8 @@ class Library
   def total_books_rented
     @user_manager.users.sum(&:overall_rented_books)
   end
+
+  def average_books_rented
+    total_books_rented / @user_manager.users.count
+  end
 end
