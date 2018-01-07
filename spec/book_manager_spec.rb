@@ -13,7 +13,7 @@ RSpec.describe BookManager do
     end
 
     describe '.add_book' do
-      let(:book) { Book.new 1, 'John Doe', 'Red Book', 2000 }
+      let(:book) { BookFactory.create_single_book }
       let(:expected_number) { 1 }
 
       it 'adds new book to the storage' do
@@ -25,13 +25,7 @@ RSpec.describe BookManager do
   end
 
   context 'with some books' do
-    let(:books) {
-      [
-        (Book.new 1, 'Mark Thompson', 'Red Book', 2000),
-        (Book.new 2, 'John Doe', 'Green Book', 2001),
-        (Book.new 3, 'Kate Anne', 'Blue Book', 2002)
-      ]
-    }
+    let(:books) { BookFactory.create_many_books }
     subject(:manager) { BookManager.new books }
 
     describe '.book_count' do
@@ -54,7 +48,7 @@ RSpec.describe BookManager do
     end
 
     describe '.update_book' do
-      let(:updated_book) { Book.new 2, 'John Doe', 'Yellow Book', 2001 }
+      let(:updated_book) { BookFactory.create_single_book }
       let(:id) { 2 }
 
       it 'updates certain book' do
