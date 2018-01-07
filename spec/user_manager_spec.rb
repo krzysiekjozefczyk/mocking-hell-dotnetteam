@@ -78,6 +78,7 @@ RSpec.describe UserManager do
         expect(manager.get_user(nil).to_s).to eq(updated_user.to_s)
       end
     end
+
     describe '.add_book' do
       let(:user) { users[0] }
       let(:book) { Book.new 1, 'Jake Hyde', 'Some title', '2012' }
@@ -88,6 +89,17 @@ RSpec.describe UserManager do
         expect { manager.add_book(user.id, book) }.to change { user.overall_rented_books }
         expect(user.currently_rented_books).to include(book)
         expect(user.overall_rented_books).to eq(expected_user_book_count)
+      end
+    end
+
+    describe '.remove_book' do
+      let(:user) { users[1] }
+      let(:book) { Book.new 1, 'Whatever', 'Works', '1996' }
+      let!(:book_count) { user.overall_rented_books }
+
+      it 'doesn\'t remove non-existent book from user' do
+        expect { manager.remove_book(user.id, book) }.to raise_error
+        expect(user.overall_rented_books).to eq(book_count)
       end
     end
   end

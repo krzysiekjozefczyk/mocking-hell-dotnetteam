@@ -18,3 +18,7 @@ Metrics/BlockLength:
 
 Style/StringLiterals:
   Enabled: true
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
