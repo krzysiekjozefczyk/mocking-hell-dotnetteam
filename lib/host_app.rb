@@ -32,6 +32,7 @@ class HostApp
     write '[1] LIST USERS'
     write '[2] ADD USER'
     write '[3] REMOVE USER'
+    write '[4] UPDATE USER'
   end
 
   def print_gap
@@ -49,6 +50,8 @@ class HostApp
       add_user
     when '3'
       remove_user
+    when '4'
+      update_user
     else
       write 'Wrong option!'
     end
@@ -84,6 +87,16 @@ class HostApp
     write 'ID?'
     user_id = read
     result = @user_manager.remove_user user_id
+    message = result.nil? ? 'ERROR' : 'OK'
+    write message
+  end
+
+  def update_user
+    write '-- UPDATE USER --'
+    write 'ID?'
+    user_id = read
+    updated_user = create_user
+    result = @user_manager.update_user(user_id, updated_user)
     message = result.nil? ? 'ERROR' : 'OK'
     write message
   end
