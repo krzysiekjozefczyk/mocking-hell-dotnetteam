@@ -13,6 +13,9 @@ class UserFactory
   end
 
   def self.create_single_user_with_book
-    User.new 4, 'Joe', 'Lopez', '92050411222', [BookFactory.create_single_book]
+    user_id = 4
+    book = BookFactory.create_single_book
+    book.rented_by = user_id
+    User.new user_id, 'Joe', 'Lopez', '92050411222', [book]
   end
 end
