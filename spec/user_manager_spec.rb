@@ -13,7 +13,7 @@ RSpec.describe UserManager do
     end
 
     describe '.add_user' do
-      let(:user) { UserFactory.create_single_user_without_books() }
+      let(:user) { UserFactory.create_single_user_without_books }
       let!(:expected_number) { manager.user_count + 1 }
 
       it 'adds new user to the storage' do
@@ -25,10 +25,7 @@ RSpec.describe UserManager do
   end
 
   context 'with some users' do
-    let(:user1) { (User.new 1, 'Jon', 'Son', '91090877666') }
-    let(:user2) { (User.new 2, 'Anne', 'Smith', '92050455111') }
-    let(:user3) { (User.new 3, 'Mark', 'Twain', '93040333222') }
-    let(:users) { [user1, user2, user3] }
+    let(:users) { UserFactory.create_array_of_users_without_books }
     subject(:manager) { UserManager.new users }
 
     describe '.user_count' do
@@ -40,15 +37,15 @@ RSpec.describe UserManager do
     end
 
     describe '.get_user' do
-      let(:expected_user) { user2 }
+      let(:expected_user) { users[2] }
 
       it 'returns correct user' do
-        expect(manager.get_user(user2.id)).to eq(expected_user)
+        expect(manager.get_user(users[2].id)).to eq(expected_user)
       end
     end
 
     describe '.add_user' do
-      let(:user) { User.new 4, 'Jenny', 'Smith', '91050324222' }
+      let(:user) { UserFactory.create_single_user_without_books }
       let!(:expected_number) { manager.user_count + 1 }
 
       it 'adds new user to the storage' do
@@ -70,7 +67,7 @@ RSpec.describe UserManager do
     end
 
     describe '.update_user' do
-      let(:updated_user) { User.new 1, 'Jon', 'Don', '91090877666' }
+      let(:updated_user) { UserFactory.create_single_user_without_books }
 
       it 'updates certain user' do
         expect(manager).to receive(:get_user).and_return(users[0], users[0])
@@ -107,7 +104,6 @@ RSpec.describe UserManager do
     let(:user) { User.new 1, 'Jon', 'Son', '91090877666', [book] }
     let(:book) { Book.new 1, 'Whatever', 'Works', '1996' }
     subject(:manager) { UserManager.new [user] }
-
 
     describe '.remove_book' do
       it 'removes existing book from user' do
